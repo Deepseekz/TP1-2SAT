@@ -15,8 +15,8 @@ public class Graph<Label> {
         }
     }
 
-    private int cardinal;
-    private ArrayList<LinkedList<Edge>> incidency;
+    private final int cardinal;
+    private final ArrayList<LinkedList<Edge>> incidency;
 
 
     public Graph(int size) {
@@ -36,7 +36,7 @@ public class Graph<Label> {
     }
 
     public String toString() {
-        String result = new String("");
+        String result = "";
         result.concat(cardinal + "\n");
         for (int i = 0; i<cardinal;i++) {
             for (Edge e : incidency.get(i)) {
