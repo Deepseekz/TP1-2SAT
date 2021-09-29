@@ -29,9 +29,9 @@ public class Graph {
         TwoSatReader.SatReader(filePath,this);
     }
 
-    public ArrayList<LinkedList<Integer>> getImplicationGraph()
+    public ArrayList<LinkedList<Integer>> implicationGraph()
     {
-        ArrayList<LinkedList<Integer>> result = graph;
+        ArrayList<LinkedList<Integer>> result = new ArrayList<>();
         for (LinkedList<Integer> clause : graph){
             LinkedList<Integer> firstProcessedClause = new LinkedList<>();
             firstProcessedClause.addLast(-clause.get(0));
@@ -39,12 +39,27 @@ public class Graph {
 
             LinkedList<Integer> secondProcessedClause = new LinkedList<>();
             secondProcessedClause.addLast(-clause.get(1));
-            secondProcessedClause.addLast(clause.get(2));
+            secondProcessedClause.addLast(clause.get(0));
 
             result.add(firstProcessedClause);
             result.add(secondProcessedClause);
         }
         return result;
     }
+
+    public ArrayList<LinkedList<Integer>> transpose()
+    {
+        ArrayList<LinkedList<Integer>> result = new ArrayList<>();
+        for (LinkedList<Integer> clause : implicationGraph())
+        {
+            LinkedList<Integer> transposedClause = new LinkedList<>();
+            transposedClause.add(clause.get(1));
+            transposedClause.add(clause.get(0));
+
+            result.add(transposedClause);
+        }
+        return result;
+    }
+
 
 }

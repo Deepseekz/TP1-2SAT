@@ -4,6 +4,8 @@ public class Main
     {
 
         Graph graph = new Graph("samples/formule-2-sat.txt");
-        System.out.print(graph.getImplicationGraph());
+        System.out.print(graph.implicationGraph() + "\n");
+
+        System.out.print(graph.transpose());
     }
 }
