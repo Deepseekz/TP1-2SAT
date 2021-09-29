@@ -1,52 +1,50 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Graph<Label> {
+public class Graph {
+    private int numberOfClauses;
+    private int numberOfVars;
+    private String comment = "";
+    private final ArrayList<LinkedList<Integer>> graph = new ArrayList<>();
 
-    private class Edge {
-        public int source;
-        public int destination;
-        public Label label;
-
-        public Edge(int from, int to, Label label) {
-            this.source = from;
-            this.destination = to;
-            this.label = label;
-        }
+    public void setNumberOfClauses(int numberOfClauses) {
+        this.numberOfClauses = numberOfClauses;
     }
 
-    private final int cardinal;
-    private final ArrayList<LinkedList<Edge>> incidency;
-
-
-    public Graph(int size) {
-        cardinal = size;
-        incidency = new ArrayList<LinkedList<Edge>>(size+1);
-        for (int i = 0;i<cardinal;i++) {
-            incidency.add(i, new LinkedList<Edge>());
-        }
+    public void setNumberOfVars(int numberOfVars) {
+        this.numberOfVars = numberOfVars;
     }
 
-    public int order() {
-        return cardinal;
+    public void appendComment(String comment) {
+        this.comment += comment;
     }
 
-    public void addArc(int source, int dest, Label label) {
-        incidency.get(source).addLast(new Edge(source,dest,label));
+    public void addClause(LinkedList<Integer> clause)
+    {
+        graph.add(clause);
     }
 
-    public String toString() {
-        String result = "";
-        result.concat(cardinal + "\n");
-        for (int i = 0; i<cardinal;i++) {
-            for (Edge e : incidency.get(i)) {
-                result.concat(e.source + " " + e.destination + " "
-                        + e.label.toString() + "\n");
-            }
+    public Graph(String filePath)
+    {
+        TwoSatReader.SatReader(filePath,this);
+    }
+
+    public ArrayList<LinkedList<Integer>> getImplicationGraph()
+    {
+        ArrayList<LinkedList<Integer>> result = graph;
+        for (LinkedList<Integer> clause : graph){
+            LinkedList<Integer> firstProcessedClause = new LinkedList<>();
+            firstProcessedClause.addLast(-clause.get(0));
+            firstProcessedClause.addLast(clause.get(1));
+
+            LinkedList<Integer> secondProcessedClause = new LinkedList<>();
+            secondProcessedClause.addLast(-clause.get(1));
+            secondProcessedClause.addLast(clause.get(2));
+
+            result.add(firstProcessedClause);
+            result.add(secondProcessedClause);
         }
         return result;
-
     }
-
 
 }

@@ -2,10 +2,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class DataReader {
+public class TwoSatReader {
 
-    public static void SatReader(String path, SatProblem problem)
+    public static void SatReader(String path, Graph problem)
     {
         try {
             for (String line : Files.readAllLines(Paths.get(path))) {
@@ -16,7 +17,7 @@ public class DataReader {
         }
     }
 
-    private static void SatDatatypeTester(String line, SatProblem problem)
+    private static void SatDatatypeTester(String line, Graph problem)
     {
         if (line.startsWith("c")) {
             problem.appendComment(line.split(" ")[1] + "\n");
@@ -28,9 +29,9 @@ public class DataReader {
         } else problem.addClause(SatVarSeparator(line));
     }
 
-    private static ArrayList<Integer> SatVarSeparator(String line)
+    private static LinkedList<Integer> SatVarSeparator(String line)
     {
-        ArrayList<Integer> result = new ArrayList<>();
+        LinkedList<Integer> result = new LinkedList<>();
         for (String var : line.split(" "))
         {
             result.add(Integer.parseInt(var));
