@@ -61,7 +61,9 @@ public class Graph {
         return result;
     }
 
-    public void parcoursProfondeur(Integer start){
+    public void ArrayList<LinkedList<Integer>> parcoursProfondeur(){
+
+        ArrayList<LinkedList<Integer>>
 
         Integer source = graph.get(start).get(0);
         Integer destination = graph.get(start).get(1);
@@ -69,7 +71,7 @@ public class Graph {
 
         ArrayList<Integer> sawElements = new ArrayList<>();
 
-        if (sawElements.contains(start)) {
+        if (sawElements.contains(destination)) {
             System.out.print("cfc discovered : ");
             System.out.print(sawElements);
         }
