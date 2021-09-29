@@ -7,5 +7,7 @@ public class Main
         System.out.print(graph.implicationGraph() + "\n");
 
         System.out.print(graph.transpose());
+
+        graph.parcoursProfondeur(0);
     }
 }

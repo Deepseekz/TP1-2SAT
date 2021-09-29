@@ -61,5 +61,26 @@ public class Graph {
         return result;
     }
 
+    public void parcoursProfondeur(Integer start){
+
+        Integer source = graph.get(start).get(0);
+        Integer destination = graph.get(start).get(1);
+
+
+        ArrayList<Integer> sawElements = new ArrayList<>();
+
+        if (sawElements.contains(start)) {
+            System.out.print("cfc discovered : ");
+            System.out.print(sawElements);
+        }
+        else {
+            sawElements.add(source);
+            sawElements.add(destination);
+            parcoursProfondeur(start+1);
+        }
+
+
+    }
+
 
 }
