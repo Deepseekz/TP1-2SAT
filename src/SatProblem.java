@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class SatProblem
 {
     private int numberOfClauses;
     private int numberOfVars;
     private String comment = "";
-    private final ArrayList<ArrayList<Integer>> clauses = new ArrayList<>();
+    public final ArrayList<LinkedList<Integer>> clauses = new ArrayList<>();
 
     public void setNumberOfClauses(int numberOfClauses) {
         this.numberOfClauses = numberOfClauses;
@@ -15,15 +16,11 @@ public class SatProblem
         this.numberOfVars = numberOfVars;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public void appendComment(String comment) {
         this.comment += comment;
     }
 
-    public void addClause(ArrayList<Integer> clause)
+    public void addClause(LinkedList<Integer> clause)
     {
         clauses.add(clause);
     }
@@ -35,6 +32,21 @@ public class SatProblem
 
     public Graph toGraph()
     {
+        ArrayList<LinkedList<Integer>> result = new ArrayList<>();
+
+        for (LinkedList<Integer> clause : clauses){
+        }
+
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "SatProblem{" +
+                "numberOfClauses=" + numberOfClauses +
+                ", numberOfVars=" + numberOfVars +
+                ", comment='" + comment + '\'' +
+                ", clauses=" + clauses +
+                '}';
     }
 }

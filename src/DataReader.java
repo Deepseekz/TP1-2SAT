@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class DataReader {
 
@@ -28,9 +29,9 @@ public class DataReader {
         } else problem.addClause(SatVarSeparator(line));
     }
 
-    private static ArrayList<Integer> SatVarSeparator(String line)
+    private static LinkedList<Integer> SatVarSeparator(String line)
     {
-        ArrayList<Integer> result = new ArrayList<>();
+        LinkedList<Integer> result = new LinkedList<>();
         for (String var : line.split(" "))
         {
             result.add(Integer.parseInt(var));
